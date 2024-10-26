@@ -1,0 +1,150 @@
+<!-- <html lang="ru"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта Актобе</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.25/"></script>
+    <style>
+        #viewDiv {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewDiv"></div>
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer"
+        ], function(Map, MapView, FeatureLayer) {
+            const map = new Map({
+                basemap: "streets-vector"
+            });
+
+            const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                zoom: 12,
+                center: [57.1648, 50.2832] // Координаты Актобе
+            });
+
+            const featureLayer = new FeatureLayer({
+                url: "https://services.arcgis.com/6U2fStfMBc0v2JqV/arcgis/rest/services/границы области Актобе/FeatureServer"
+            }); // Замените на URL вашего слоя
+            });
+
+            map.add(featureLayer);
+
+            // Настройка всплывающих окон
+            featureLayer.popupTemplate = {
+                title: "{rayon_aty}", // Замените на имя атрибута, содержащего название района
+                content: "{halyk_sany}" // Замените на имя атрибута, содержащего дополнительную информацию
+            };
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта Актобе</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.25/"></script>
+    <style>
+        #viewDiv {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewDiv"></div>
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer"
+        ], function(Map, MapView, FeatureLayer) {
+            const map = new Map({
+                basemap: "OpenStreetMap"
+            });
+
+            const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                zoom: 12,
+                center: [57.1648, 50.2832] // Координаты Актобе
+            });
+
+            const featureLayer = new FeatureLayer({
+                url: "https://cacgeoportal-hub.maps.arcgis.com/home/item.html?id=660a6a6e49fd4732a7e1e22d01780a98" // Используйте правильный URL
+            });
+
+            map.add(featureLayer); // Переместил эту строку внутрь функции
+
+            // Настройка всплывающих окон
+            featureLayer.popupTemplate = {
+                title: "{rayon_aty}", // Убедитесь, что этот атрибут существует
+                content: "{halyk_sany}" // Убедитесь, что этот атрибут существует
+            };
+        });
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта Актобе</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.25/"></script>
+    <style>
+        #viewDiv {
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewDiv"></div>
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/FeatureLayer"
+        ], function(Map, MapView, FeatureLayer) {
+            const map = new Map({
+                basemap: "streets-vector"
+            });
+
+            const view = new MapView({
+                container: "viewDiv",
+                map: map,
+                zoom: 12,
+                center: [57.1648, 50.2832] // Координаты Актобе
+            });
+
+            const featureLayer = new FeatureLayer({
+                url: "https://cacgeoportal-hub.maps.arcgis.com/home/item.html?id=660a6a6e49fd4732a7e1e22d01780a98" // Замените на URL вашего слоя
+            });
+
+            map.add(featureLayer);
+
+            // Настройка всплывающих окон
+            featureLayer.popupTemplate = {
+                title: "{name}", // Замените на имя атрибута, содержащего название района
+                content: "{description}" // Замените на имя атрибута, содержащего дополнительную информацию
+            };
+        });
+    </script>
+</body>
+</html>
