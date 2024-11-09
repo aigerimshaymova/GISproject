@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMS Layer in ArcGIS</title>
+    <!-- Подключение ArcGIS API for JavaScript -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.24/"></script>
+    <select id="layerSelect">
+        <option value="0">OpenStreetMap</option>
+        <option value="1">NASA</option>
+    </select>
+    
+    <script>
+        // Обработчик события для выбора слоя
+        document.getElementById("layerSelect").addEventListener("change", function(event) {
+            changeLayer(event.target.value);
+        });
+    </script>
+    
+    <style>
+        html, body, #viewDiv {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="viewDiv"></div>
+
+    <script>
+        require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/WMSLayer"
+        ], function(Map, MapView, WMSLayer) {
+
+            // Создание карты и вида
+            var map = new Map({
+                basemap: "topo-vector"  // Основная карта
+            });
+
+            var view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [57.1997, 50.2825], // Координаты для города Актобе (центр Актюбинской области)
+                zoom: 8 // Подходящий уровень зума для Актюбинской области
+            });
+
+            // Добавление WMS-слоя OpenStreetMap
+            var wmsLayer = new WMSLayer({
+                url: "https://ows.terrestris.de/osm/service?",  // Адрес WMS-сервера
+                resourceInfo: {
+                    layers: ["OSM-WMS"],  // Название слоя WMS
+                    format: "image/png",
+                    transparent: true
+                }
+            });
+
+            // Добавление WMS-слоя на карту
+            map.add(wmsLayer);
+
+            // Реализуем функциональность выбора разных слоев WMS
+            // Здесь можно добавить возможность переключения слоев
+            var layers = [
+                { name: "OSM-WMS", url: "https://ows.terrestris.de/osm/service?" },
+                { name: "NASA WMS", url: "https://worldwind25.arc.nasa.gov/wms?" }
+            ];
+
+            // Функция для смены слоя
+            function changeLayer(layerIndex) {
+                wmsLayer.url = layers[layerIndex].url;
+                wmsLayer.resourceInfo.layers = [layers[layerIndex].name];
+            }
+
+            // Вызов функции смены слоя для тестирования
+            // Например, переключим на NASA WMS через 5 секунд
+            setTimeout(function() {
+                changeLayer(1); // Переключение на NASA WMS
+            }, 5000);
+
+        });
+    </script>
+</body>
+</html>
